@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y \
 
 # Upgrade pip tooling and preinstall CPU Torch (compatible)
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel \
-    && pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cpu torch==2.1.2
+    && pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cpu torch==2.1.2 \n    && pip install --no-cache-dir numpy==1.26.4 "cython<3" blis==0.7.11
 
 # Install Python dependencies
 COPY requirements.txt .

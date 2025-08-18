@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
@@ -34,12 +34,6 @@ COPY xtts_server.py .
 COPY dist/reference_kelly.wav dist/
 COPY dist/reference_ken_mono16k.wav dist/reference_ken_mono16k.wav
 RUN ln -s /app/dist/reference_ken_mono16k.wav /app/dist/reference_ken.wav
-
-# Warm model cache to reduce cold-start
-RUN python - <<'PY'
-from TTS.api import TTS
-TTS('tts_models/multilingual/multi-dataset/xtts_v2')
-PY
 
 ENV PYTHONUNBUFFERED=1
 EXPOSE 5002
